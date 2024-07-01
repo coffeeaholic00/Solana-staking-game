@@ -1,21 +1,29 @@
 # Infrastructure
 
 ## Client
+
 `cd client`
+
 - Library with gettable methods.
 - Server with useful endpoints for FE side
 - NOTE: set variable program_id in `client/src/client.ts`
 
 ## Program
+
 `cd program`
+
 > program/src
+
 - Source files for staking smart contract program
 
->program/tests
+> program/tests
+
 - Tests for all instructions in devnet cluster and for reward calculation flow
 
 ## Rust Client
+
 `cd rust-client`
+
 - Simple service to call SC instructions via command line
 
 # Staking Setup + Commands
@@ -34,13 +42,13 @@
 
 `spl-token mint <mint> <amount>`
 
-## Set ADMIN and REWARD_MINT consts in `program/src/consts.rs` and  enter program id to declare_id macro in `program/src/lib.rs`
+## Set ADMIN and REWARD_MINT consts in `program/src/consts.rs` and enter program id to declare_id macro in `program/src/lib.rs`
 
 `cd program && cargo build-bpf`
 
 - NOTE: If `cargo build-bpf` doesn't work for you, run `rm -rf ~/.cache/solana` and then re-run the build command again. This should force solana to re-download and link the bpf utilities.
 
-## Deployment will cost 1.75046512 sol
+## Deployment will cost 1.372093 sol
 
 `solana program deploy /path/to/nft-staking/program/target/deploy/staking.so`
 
@@ -59,12 +67,6 @@
 `spl-token transfer <reward_mint> <amount> <vault-address> --fund-recipient`
 
 - NOTE: second address is the vault address returned from `generate_vault_address` cmd
-
-## Add creator ID to whitelist
-
-`cargo run -- add_to_whitelist -s /path/to/deployer/id.json --creator <creator-address>`
-
-- `<creator-address>` is the first creator address on the NFTs in your collection. This should be a creator with 0% share.
 
 ## Client commands
 
